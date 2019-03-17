@@ -11,7 +11,7 @@ import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.List;
 
-//权限申请工具类，简单好用
+//权限申请工具类
 public class PermissionUtils {
 
     private int resultCode;
