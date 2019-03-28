@@ -8,8 +8,9 @@ import com.ellen.basequickandroid.base.BaseActivity;
 import com.ellen.basequickandroid.util.WebViewSetttingUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements BaseActivity.ButterKnifeInterface {
 
     @BindView(R.id.web_view)
     WebView webView;
@@ -43,5 +44,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected Boolean isSetVerticalScreen() {
         return null;
+    }
+
+    @Override
+    public void initButterKnife() {
+        ButterKnife.bind(this);
     }
 }

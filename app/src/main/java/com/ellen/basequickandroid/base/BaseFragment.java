@@ -36,7 +36,6 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initView();
     protected abstract int setLayout();
 
-
     //支持ButterKnife的接口
     public interface ButterKnifeInterface {
         void initButterKnife(View view);
