@@ -43,7 +43,7 @@ public abstract class BaseApplication extends Application {
     }
 
     public ActivityManger getActivityManager(Activity activity){
-        if(appManager != null) {
+        if(isListenerActivity()) {
             return getAppManager().appManagerMap.get(activity.getPackageName() + activity.getClass().getName());
         }else {
             Log.e("您没有开启Activity监控","ok");
@@ -53,10 +53,14 @@ public abstract class BaseApplication extends Application {
 
     //获取某个Activity的工作记录
     public Map<String, List<Long>> getActivityWorkRecord(Activity activity){
-        ActivityManger activityManger = getActivityManager(activity);
-        if(activityManger != null) {
-            return activityManger.timeMap;
-        }else {
+        if(isListenerActivity()){
+            ActivityManger activityManger = getActivityManager(activity);
+            if(activityManger != null) {
+                return activityManger.timeMap;
+            }else {
+                return null;
+            }
+        } else {
             Log.e("您没有开启Activity监控","ok");
             return null;
         }
