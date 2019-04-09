@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.webkit.WebView;
 
 import com.ellen.basequickandroid.base.BaseActivity;
+import com.ellen.basequickandroid.util.BaseLog;
 import com.ellen.basequickandroid.util.WebViewSetttingUtils;
 
 import butterknife.BindView;
@@ -34,6 +35,7 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
     protected void initData() {
         //加载百度首页
         WebViewSetttingUtils.loadUrl(webView,"https://www.baidu.com/");
+        BaseLog.d("ss","dsadasd");
     }
 
     @Override
