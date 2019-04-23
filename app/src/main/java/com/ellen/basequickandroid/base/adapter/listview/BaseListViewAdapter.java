@@ -1,4 +1,4 @@
-package com.ellen.basequickandroid.base.adapter;
+package com.ellen.basequickandroid.base.adapter.listview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
