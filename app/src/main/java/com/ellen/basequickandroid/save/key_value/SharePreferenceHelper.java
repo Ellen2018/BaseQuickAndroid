@@ -54,7 +54,7 @@ public class SharePreferenceHelper extends BaseKeyValueHelper {
     }
 
     @Override
-    public void safeSave(String encryptionString, String key, String value) {
+    public void safeSave(String encryptionString, String key, Object value) {
         save(encryptionString + key, value);
     }
 

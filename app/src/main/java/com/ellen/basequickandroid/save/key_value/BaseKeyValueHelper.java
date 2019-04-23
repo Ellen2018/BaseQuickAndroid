@@ -16,7 +16,6 @@ public abstract class BaseKeyValueHelper {
     public abstract Object getValue(String key,Object defaultValue);
 
     //存储获取加密数据
-    public abstract void safeSave(String encryptionString,String key,String value);
+    public abstract void safeSave(String encryptionString,String key,Object value);
     public abstract Object safeGetValue(String encryptionString,String key,Object defaultValue);
-
 }
