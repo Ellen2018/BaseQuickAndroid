@@ -14,12 +14,8 @@ public abstract class BaseListViewAdapter<T,E extends BaseListViewAdapter.ViewHo
     private WeakReference<Context> contextWeakReference;
     private List<T> dataList;
 
-    public WeakReference<Context> getContextWeakReference() {
-        return contextWeakReference;
-    }
-
-    public void setContextWeakReference(WeakReference<Context> contextWeakReference) {
-        this.contextWeakReference = contextWeakReference;
+    public Context getContext() {
+        return contextWeakReference.get();
     }
 
     public List<T> getDataList() {
@@ -54,7 +50,7 @@ public abstract class BaseListViewAdapter<T,E extends BaseListViewAdapter.ViewHo
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if(convertView == null){
-            convertView = LayoutInflater.from(contextWeakReference.get()).inflate(getItemLayoutId(),null);
+            convertView = LayoutInflater.from(getContext()).inflate(getItemLayoutId(),null);
             viewHolder = getNewViewHolder();
             initViewHolder((E)viewHolder,convertView);
             convertView.setTag(viewHolder);
@@ -65,9 +61,13 @@ public abstract class BaseListViewAdapter<T,E extends BaseListViewAdapter.ViewHo
         return convertView;
     }
 
+    //显示数据的时候回调
     protected abstract void showData(E viewHolder,int position);
+    //绑定iewHolder里控件时回调
     protected abstract void initViewHolder(E viewHolder,View view);
+    //获取item布局id时回调
     protected abstract int getItemLayoutId();
+    //绑定一个新的ViewHolder时回调
     protected abstract ViewHolder getNewViewHolder();
 
     public static class ViewHolder{}
