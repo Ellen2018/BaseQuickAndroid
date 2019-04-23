@@ -1,4 +1,4 @@
-package com.ellen.basequickandroid.save;
+package com.ellen.basequickandroid.save.key_value;
 
 /**
  * SharedPreference或者MMKV的抽象层
