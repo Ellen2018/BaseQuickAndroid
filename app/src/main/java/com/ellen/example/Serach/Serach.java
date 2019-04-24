@@ -21,7 +21,7 @@ public class Serach {
         }
         return -1;
     }
-    
+
     //递归实现二分查找
     public static int binarySearch(int[] dataset,int data,int beginIndex,int endIndex){
         int midIndex = (beginIndex+endIndex)/2;
