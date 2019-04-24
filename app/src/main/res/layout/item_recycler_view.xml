@@ -8,7 +8,7 @@
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="sss"
+        android:text="顶部"
         android:textColor="#000000" />
 
 </RelativeLayout>

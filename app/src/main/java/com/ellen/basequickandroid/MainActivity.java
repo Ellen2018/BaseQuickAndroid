@@ -1,11 +1,9 @@
 package com.ellen.basequickandroid;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.webkit.WebView;
-import android.widget.ListView;
 
 import com.ellen.basequickandroid.base.BaseActivity;
 import com.ellen.basequickandroid.util.BaseLog;
@@ -36,7 +34,8 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
 
     @Override
     protected void initView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this,5);
+        recyclerView.setLayoutManager(gridLayoutManager);
         List<String> stringList = new ArrayList<>();
         stringList.add("1");
         stringList.add("2");
@@ -50,7 +49,7 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
         stringList.add("10");
         stringList.add("11");
         stringList.add("12");
-        recyclerView.setAdapter(new adapter2(MainActivity.this));
+        recyclerView.setAdapter(new Adapter2(MainActivity.this));
     }
 
     @Override

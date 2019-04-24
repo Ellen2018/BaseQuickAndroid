@@ -17,7 +17,7 @@ public abstract class BaseMultipleRecyclerViewAdapter extends RecyclerView.Adapt
 
     public Context getContext(){
         return contextWeakReference.get();
-    }
+}
 
     @NonNull
     @Override
