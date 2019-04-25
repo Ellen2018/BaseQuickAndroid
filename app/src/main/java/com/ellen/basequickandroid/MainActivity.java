@@ -12,10 +12,13 @@ import android.view.View;
 import android.webkit.WebView;
 
 import com.ellen.basequickandroid.base.BaseActivity;
+import com.ellen.basequickandroid.base.BaseDialog;
+import com.ellen.basequickandroid.dialog.SystemWaitDialog;
 import com.ellen.basequickandroid.util.BaseLog;
 import com.ellen.basequickandroid.util.ContentProviderUtils;
 import com.ellen.basequickandroid.util.ImageChooseUtils;
 import com.ellen.basequickandroid.util.PermissionUtils;
+import com.ellen.basequickandroid.util.ToastUtils;
 import com.ellen.basequickandroid.util.WebViewSetttingUtils;
 
 import java.security.acl.Permission;
@@ -80,6 +83,15 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
 
            }
        });
+
+        SystemWaitDialog systemWaitDialog = new SystemWaitDialog(this);
+        systemWaitDialog.setOnDismissListener(new BaseDialog.OnDismissListener() {
+            @Override
+            public void dismiss() {
+                ToastUtils.toast(MainActivity.this,"对话框消失了");
+            }
+        });
+        systemWaitDialog.show();
 
     }
 

@@ -3,6 +3,7 @@ package com.ellen.basequickandroid.base;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 
 import java.lang.ref.WeakReference;
@@ -40,7 +41,14 @@ public abstract class BaseDialog {
         if(setCanceledOnTouchOutside() != null) {
             dialog.setCanceledOnTouchOutside(setCanceledOnTouchOutside());
         }
-
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                if(onDismissListener != null){
+                    onDismissListener.dismiss();
+                }
+            }
+        });
     }
 
     public void show(){
@@ -56,9 +64,6 @@ public abstract class BaseDialog {
             butterKnifeInterface.unBindButterKnife();
         }
         dialog.dismiss();
-        if(onDismissListener != null){
-            onDismissListener.dismiss();
-        }
         destory();
     }
 
