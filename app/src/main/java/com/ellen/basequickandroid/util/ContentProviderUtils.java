@@ -11,8 +11,9 @@ import java.util.List;
 /**
  * 内容提供者工具类
  * 1.获取本地所有的图片
- * 2.获取本地所有的适配
- * <p>
+ * 2.获取本地所有的视频
+ * 3.获取本地所有的音频
+ *
  * 使用之前请申请文件读写权限
  */
 public class ContentProviderUtils {

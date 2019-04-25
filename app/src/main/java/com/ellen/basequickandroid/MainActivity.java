@@ -66,23 +66,20 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
     @Override
     protected void initView() {
         permissionUtils = new PermissionUtils(this,this);
-        List<String> stringList = new ArrayList<>();
-        stringList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        stringList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-        permissionUtils.checkPermissions(stringList, 1, new PermissionUtils.PermissionCallback() {
-            @Override
-            public void success() {
-                List<ContentProviderUtils.Music> musicList = ContentProviderUtils.getMusicPathList(MainActivity.this);
-                for(ContentProviderUtils.Music music:musicList){
-                    Log.e("图片地址是",music.getPath());
-                }
-            }
+       permissionUtils.startCheckFileReadWritePermission(1, new PermissionUtils.PermissionCallback() {
+           @Override
+           public void success() {
+               List<ContentProviderUtils.Music> musicList = ContentProviderUtils.getMusicPathList(MainActivity.this);
+               for(ContentProviderUtils.Music music:musicList){
+                   Log.e("音频地址",music.getPath());
+               }
+           }
 
-            @Override
-            public void failure() {
+           @Override
+           public void failure() {
 
-            }
-        });
+           }
+       });
 
     }
 
