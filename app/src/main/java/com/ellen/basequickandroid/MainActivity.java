@@ -1,12 +1,17 @@
 package com.ellen.basequickandroid;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 
 import com.ellen.basequickandroid.base.BaseActivity;
 import com.ellen.basequickandroid.util.BaseLog;
+import com.ellen.basequickandroid.util.ImageChooseUtils;
 import com.ellen.basequickandroid.util.WebViewSetttingUtils;
 
 import java.util.ArrayList;
@@ -14,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements BaseActivity.ButterKnifeInterface {
 
@@ -21,6 +27,24 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
     WebView webView;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    private ImageChooseUtils imageChooseUtils;
+
+    @OnClick(R.id.bt1)
+    void onClick(View view){
+        imageChooseUtils = new ImageChooseUtils(this, this, new ImageChooseUtils.ChooseImageCallback() {
+            @Override
+            public void successs(String path) {
+                Log.e("选择的图片地址是",path);
+            }
+
+            @Override
+            public void failure() {
+
+            }
+        });
+        imageChooseUtils.toSystemAlbum(1);
+    }
 
     @Override
     protected void setStatus() {
@@ -72,5 +96,11 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
     @Override
     public void initButterKnife() {
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        imageChooseUtils.onActivityResult(requestCode,resultCode,data);
     }
 }

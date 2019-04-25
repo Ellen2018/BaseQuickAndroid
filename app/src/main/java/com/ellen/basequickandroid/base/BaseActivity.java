@@ -1,6 +1,7 @@
 package com.ellen.basequickandroid.base;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -70,4 +71,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     public interface ButterKnifeInterface {
         void initButterKnife();
     }
+
 }
