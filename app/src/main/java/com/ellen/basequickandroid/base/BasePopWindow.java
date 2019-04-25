@@ -39,6 +39,15 @@ public abstract class BasePopwindow {
         popupWindow.setTouchable(isResponseTouchable());
         //设置其它，例如：可以通过这个方法完成虚拟键盘适配等
         setOtherSetting(popupWindow);
+
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(onDismissListener != null){
+                    onDismissListener.dissmiss();
+                }
+            }
+        });
     }
 
     protected void onResume(){}
@@ -84,11 +93,6 @@ public abstract class BasePopwindow {
 
     public void dismiss(){
         dismissBefore();
-        if(popupWindow != null && popupWindow.isShowing()){
-            if(onDismissListener != null){
-                onDismissListener.dissmiss();
-            }
-        }
         //解除绑定
         if(this instanceof ButterKnifeInterface){
             ButterKnifeInterface butterKnifeInterface = (ButterKnifeInterface) this;
