@@ -1,6 +1,8 @@
 package com.ellen.basequickandroid;
 
+import android.Manifest;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +13,12 @@ import android.webkit.WebView;
 
 import com.ellen.basequickandroid.base.BaseActivity;
 import com.ellen.basequickandroid.util.BaseLog;
+import com.ellen.basequickandroid.util.ContentProviderUtils;
 import com.ellen.basequickandroid.util.ImageChooseUtils;
+import com.ellen.basequickandroid.util.PermissionUtils;
 import com.ellen.basequickandroid.util.WebViewSetttingUtils;
 
+import java.security.acl.Permission;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,24 +61,29 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
         return R.layout.activity_main;
     }
 
+    private PermissionUtils permissionUtils;
+
     @Override
     protected void initView() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this,5);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        permissionUtils = new PermissionUtils(this,this);
         List<String> stringList = new ArrayList<>();
-        stringList.add("1");
-        stringList.add("2");
-        stringList.add("3");
-        stringList.add("4");
-        stringList.add("5");
-        stringList.add("6");
-        stringList.add("7");
-        stringList.add("8");
-        stringList.add("9");
-        stringList.add("10");
-        stringList.add("11");
-        stringList.add("12");
-        recyclerView.setAdapter(new Adapter2(MainActivity.this));
+        stringList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        stringList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        permissionUtils.checkPermissions(stringList, 1, new PermissionUtils.PermissionCallback() {
+            @Override
+            public void success() {
+                List<ContentProviderUtils.Music> musicList = ContentProviderUtils.getMusicPathList(MainActivity.this);
+                for(ContentProviderUtils.Music music:musicList){
+                    Log.e("图片地址是",music.getPath());
+                }
+            }
+
+            @Override
+            public void failure() {
+
+            }
+        });
+
     }
 
     @Override
@@ -102,5 +112,11 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         imageChooseUtils.onActivityResult(requestCode,resultCode,data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        permissionUtils.onRequestPermissionsResult(requestCode,permissions,grantResults);
     }
 }

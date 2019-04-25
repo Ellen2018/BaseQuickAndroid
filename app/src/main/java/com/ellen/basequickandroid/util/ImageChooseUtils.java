@@ -54,6 +54,7 @@ public class ImageChooseUtils {
         this.chooseImageCallback = chooseImageCallback;
     }
 
+    //调用系统相机
     public void toCameraActivity(String imageName,String authority,int requestCode) {
         this.requestCode = requestCode;
         Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -68,6 +69,7 @@ public class ImageChooseUtils {
         activityWeakReference.get().startActivityForResult(openCameraIntent, requestCode);
     }
 
+    //调用系统相册
     public void toSystemAlbum(int requestCode){
         this.requestCode = requestCode;
         isChooseSystemAlbum = true;
@@ -80,10 +82,12 @@ public class ImageChooseUtils {
         if(this.requestCode == requestCode){
             if(resultCode == Activity.RESULT_OK){
                 if(isChooseSystemAlbum){
+                    //这里是选择了系统相册的逻辑
                     Uri uri = data.getData();
                     chooseImagePath = UriUtils.getRealFilePath(contextWeakReference.get(),uri);
                     chooseImageCallback.successs(chooseImagePath);
                 }else {
+                    //这里是选择了相机的逻辑
                     chooseImageCallback.successs(chooseImagePath);
                 }
             }else {
