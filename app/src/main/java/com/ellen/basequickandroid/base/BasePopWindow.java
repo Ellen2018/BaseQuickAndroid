@@ -50,6 +50,10 @@ public abstract class BasePopwindow {
         });
     }
 
+    protected String getTag(){
+        return getClass().getSimpleName();
+    }
+
     protected void onResume(){}
 
     protected void onstart(){}
