@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
+import com.ellen.basequickandroid.util.collectionutil.ArrangeInterface;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,10 +100,9 @@ public class ContentProviderUtils {
     }
 
 
-    public static class Music {
+    public static class Music implements ArrangeInterface<Music> {
 
         private String name;
-        private String singerName;
         private String path;
         private String album;
         private long size;
@@ -176,15 +177,10 @@ public class ContentProviderUtils {
             this.name = name;
         }
 
-        public String getSingerName() {
-            return singerName;
+        @Override
+        public boolean identical(Music music) {
+            return this.getArtist().equals(music.getArtist());
         }
-
-        public void setSingerName(String singerName) {
-            this.singerName = singerName;
-        }
-
-
     }
 
 

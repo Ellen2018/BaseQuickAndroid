@@ -20,6 +20,7 @@ import com.ellen.basequickandroid.util.ImageChooseUtils;
 import com.ellen.basequickandroid.util.PermissionUtils;
 import com.ellen.basequickandroid.util.ToastUtils;
 import com.ellen.basequickandroid.util.WebViewSetttingUtils;
+import com.ellen.basequickandroid.util.collectionutil.CollectionUtils;
 
 import java.security.acl.Permission;
 import java.util.ArrayList;
@@ -73,8 +74,11 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
            @Override
            public void success() {
                List<ContentProviderUtils.Music> musicList = ContentProviderUtils.getMusicPathList(MainActivity.this);
-               for(ContentProviderUtils.Music music:musicList){
-                   Log.e("音频地址",music.getPath());
+               List<List<ContentProviderUtils.Music>> musicList1 = CollectionUtils.arrange(musicList);
+               for(List<ContentProviderUtils.Music> musicList2:musicList1){
+                   for(ContentProviderUtils.Music music:musicList2){
+                       Log.e("歌手名",music.getArtist());
+                   }
                }
            }
 
