@@ -54,6 +54,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     //设置横竖屏,null->跟随系统,true->横屏,false->竖屏
     protected abstract Boolean isSetVerticalScreen();
 
+    protected String getTag(){
+        return getClass().getSimpleName();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

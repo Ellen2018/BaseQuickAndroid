@@ -34,6 +34,10 @@ public abstract class BaseDialogFragment extends DialogFragment {
         return view;
     }
 
+    protected String getTAG(){
+        return getClass().getSimpleName();
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

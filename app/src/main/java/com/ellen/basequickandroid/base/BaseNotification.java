@@ -67,6 +67,10 @@ public abstract class BaseNotification {
         notificationIntent = setNotificationIntent();
     }
 
+    protected String getTag(){
+        return getClass().getSimpleName();
+    }
+
     public void showNotification() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             //适配8.0以上的通知

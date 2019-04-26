@@ -26,6 +26,10 @@ public abstract class BaseDialog {
         init();
     }
 
+    protected String getTag(){
+        return getClass().getSimpleName();
+    }
+
     private void init(){
         dialog = new AlertDialog.Builder(contextWeakReference.get()).create();
         View view = onCreateView();

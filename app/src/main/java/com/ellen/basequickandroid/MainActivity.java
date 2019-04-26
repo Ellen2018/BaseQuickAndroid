@@ -92,7 +92,6 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
             }
         });
         systemWaitDialog.show();
-
     }
 
     @Override

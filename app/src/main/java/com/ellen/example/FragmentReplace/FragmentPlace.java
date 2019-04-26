@@ -2,7 +2,7 @@ package com.ellen.example.FragmentReplace;
 
 public class FragmentPlace {
 
-//    //替代xx个碎片，比如:新闻
+//    复制以下代码到你的Activity即可
 //    private void replaceFragment(String tag) {
 //        tvTitle.setText(tag);
 //        if (currentFragment != null) {

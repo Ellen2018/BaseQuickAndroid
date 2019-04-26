@@ -23,6 +23,10 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
+    protected String getTAG(){
+        return getClass().getSimpleName();
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -30,6 +34,17 @@ public abstract class BaseFragment extends Fragment {
             ButterKnifeInterface butterKnifeInterface = (ButterKnifeInterface) this;
             butterKnifeInterface.unBindButterKnife();
         }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if(isVisibleToUser){
+            if(this instanceof LazyLoadInterface){
+                LazyLoadInterface lazyLoadInterface = (LazyLoadInterface) this;
+                lazyLoadInterface.lazyLoad();
+            }
+        }
+        super.setUserVisibleHint(isVisibleToUser);
     }
 
     protected abstract void initData();
@@ -42,4 +57,7 @@ public abstract class BaseFragment extends Fragment {
         void unBindButterKnife();
     }
 
+    public interface LazyLoadInterface{
+        void lazyLoad();
+    }
 }
