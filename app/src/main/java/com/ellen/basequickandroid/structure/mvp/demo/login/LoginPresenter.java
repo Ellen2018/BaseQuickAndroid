@@ -1,7 +1,5 @@
 package com.ellen.basequickandroid.structure.mvp.demo.login;
 
-import android.graphics.drawable.Drawable;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;

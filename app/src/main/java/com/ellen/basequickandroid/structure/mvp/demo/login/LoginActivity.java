@@ -6,8 +6,6 @@ import android.widget.Button;
 import com.ellen.basequickandroid.R;
 import com.ellen.basequickandroid.base.BaseActivity;
 import com.ellen.basequickandroid.structure.mvp.BaseMvpActivity;
-import com.ellen.basequickandroid.structure.mvp.basemvp.BasePresenter;
-import com.ellen.basequickandroid.util.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -40,11 +40,11 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
     private ImageChooseUtils imageChooseUtils;
 
     @OnClick(R.id.bt1)
-    void onClick(View view){
+    void onClick(View view) {
         imageChooseUtils = new ImageChooseUtils(this, this, new ImageChooseUtils.ChooseImageCallback() {
             @Override
             public void successs(String path) {
-                Log.e("选择的图片地址是",path);
+                Log.e("选择的图片地址是", path);
             }
 
             @Override
@@ -69,30 +69,30 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
 
     @Override
     protected void initView() {
-        permissionUtils = new PermissionUtils(this,this);
-       permissionUtils.startCheckFileReadWritePermission(1, new PermissionUtils.PermissionCallback() {
-           @Override
-           public void success() {
-               List<ContentProviderUtils.Music> musicList = ContentProviderUtils.getMusicPathList(MainActivity.this);
-               List<List<ContentProviderUtils.Music>> musicList1 = CollectionUtils.arrange(musicList);
-               for(List<ContentProviderUtils.Music> musicList2:musicList1){
-                   for(ContentProviderUtils.Music music:musicList2){
-                       Log.e("歌手名",music.getArtist());
-                   }
-               }
-           }
+        permissionUtils = new PermissionUtils(this, this);
+        permissionUtils.startCheckFileReadWritePermission(1, new PermissionUtils.PermissionCallback() {
+            @Override
+            public void success() {
+                List<ContentProviderUtils.Music> musicList = ContentProviderUtils.getMusicPathList(MainActivity.this);
+                List<List<ContentProviderUtils.Music>> musicList1 = CollectionUtils.arrange(musicList);
+                for (List<ContentProviderUtils.Music> musicList2 : musicList1) {
+                    for (ContentProviderUtils.Music music : musicList2) {
+                        Log.e("歌手名", music.getArtist());
+                    }
+                }
+            }
 
-           @Override
-           public void failure() {
+            @Override
+            public void failure() {
 
-           }
-       });
+            }
+        });
 
         SystemWaitDialog systemWaitDialog = new SystemWaitDialog(this);
         systemWaitDialog.setOnDismissListener(new BaseDialog.OnDismissListener() {
             @Override
             public void dismiss() {
-                ToastUtils.toast(MainActivity.this,"对话框消失了");
+                ToastUtils.toast(MainActivity.this, "对话框消失了");
             }
         });
         systemWaitDialog.show();
@@ -101,8 +101,8 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
     @Override
     protected void initData() {
         //加载百度首页
-        WebViewSetttingUtils.loadUrl(webView,"https://www.baidu.com/");
-        BaseLog.d("ss","dsadasd");
+        WebViewSetttingUtils.loadUrl(webView, "https://www.baidu.com/");
+        BaseLog.d("ss", "dsadasd");
     }
 
     @Override
@@ -123,12 +123,12 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        imageChooseUtils.onActivityResult(requestCode,resultCode,data);
+        imageChooseUtils.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        permissionUtils.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        permissionUtils.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
