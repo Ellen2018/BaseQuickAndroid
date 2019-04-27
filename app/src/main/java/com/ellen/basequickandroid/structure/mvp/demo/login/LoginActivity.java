@@ -5,6 +5,7 @@ import android.widget.Button;
 
 import com.ellen.basequickandroid.R;
 import com.ellen.basequickandroid.base.BaseActivity;
+import com.ellen.basequickandroid.dialog.AutoToast;
 import com.ellen.basequickandroid.structure.mvp.BaseMvpActivity;
 
 import butterknife.BindView;
@@ -19,6 +20,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     @OnClick(R.id.bt)
     void onClick(View view){
         login("ellen","1234");
+        AutoToast autoToast = new AutoToast(this);
+        autoToast.show();
     }
 
     @Override
