@@ -23,12 +23,6 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     void onClick(View view){
         login("ellen","1234");
         AutoToast autoToast = new AutoToast(this);
-        autoToast.setCancelListener(new BaseToast.MyBaseToast.CancelListener() {
-            @Override
-            public void cancel() {
-                Log.e("土司结束了","haha");
-            }
-        });
         autoToast.show();
     }
 

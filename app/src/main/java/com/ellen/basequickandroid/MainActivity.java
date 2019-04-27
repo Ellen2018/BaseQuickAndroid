@@ -13,6 +13,7 @@ import android.webkit.WebView;
 
 import com.ellen.basequickandroid.base.BaseActivity;
 import com.ellen.basequickandroid.base.BaseDialog;
+import com.ellen.basequickandroid.base.adapter.recyclerview.BaseRecyclerViewAdapter;
 import com.ellen.basequickandroid.dialog.SystemWaitDialog;
 import com.ellen.basequickandroid.util.BaseLog;
 import com.ellen.basequickandroid.util.ContentProviderUtils;
@@ -69,33 +70,18 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
 
     @Override
     protected void initView() {
-        permissionUtils = new PermissionUtils(this, this);
-        permissionUtils.startCheckFileReadWritePermission(1, new PermissionUtils.PermissionCallback() {
-            @Override
-            public void success() {
-                List<ContentProviderUtils.Music> musicList = ContentProviderUtils.getMusicPathList(MainActivity.this);
-                List<List<ContentProviderUtils.Music>> musicList1 = CollectionUtils.arrange(musicList);
-                for (List<ContentProviderUtils.Music> musicList2 : musicList1) {
-                    for (ContentProviderUtils.Music music : musicList2) {
-                        Log.e("歌手名", music.getArtist());
-                    }
-                }
-            }
-
-            @Override
-            public void failure() {
-
-            }
-        });
-
-        SystemWaitDialog systemWaitDialog = new SystemWaitDialog(this);
-        systemWaitDialog.setOnDismissListener(new BaseDialog.OnDismissListener() {
-            @Override
-            public void dismiss() {
-                ToastUtils.toast(MainActivity.this, "对话框消失了");
-            }
-        });
-        systemWaitDialog.show();
+        List<String> stringList = new ArrayList<>();
+        stringList.add("1");
+       Adapter1 adapter1 = new Adapter1(this,stringList);
+       LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+       recyclerView.setLayoutManager(linearLayoutManager);
+       adapter1.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener() {
+           @Override
+           public void onItemClick(RecyclerView.ViewHolder viewHolder, int position) {
+              ToastUtils.toast(MainActivity.this,position+"");
+           }
+       });
+       recyclerView.setAdapter(adapter1);
     }
 
     @Override

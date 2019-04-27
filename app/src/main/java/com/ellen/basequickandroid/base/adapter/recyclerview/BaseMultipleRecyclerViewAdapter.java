@@ -3,11 +3,12 @@ package com.ellen.basequickandroid.base.adapter.recyclerview;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.lang.ref.WeakReference;
 
-public abstract class BaseMultipleRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class BaseMultipleRecyclerViewAdapter extends BaseRecyclerViewAdapter<BaseViewHolder> {
 
     private WeakReference<Context> contextWeakReference;
 
@@ -26,8 +27,16 @@ public abstract class BaseMultipleRecyclerViewAdapter extends RecyclerView.Adapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseViewHolder baseViewHolder, int position) {
+    public void onBindViewHolder(@NonNull final BaseViewHolder baseViewHolder, final int position) {
         showData(baseViewHolder,position);
+        if(onItemClickListener != null){
+            baseViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(baseViewHolder,position);
+                }
+            });
+        }
     }
 
     @Override

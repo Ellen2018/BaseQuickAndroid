@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public abstract class BaseSingleRecyclerViewAdapter<T,VH extends BaseViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class BaseSingleRecyclerViewAdapter<T,VH extends BaseViewHolder> extends BaseRecyclerViewAdapter<VH> {
 
     private WeakReference<Context> contextWeakReference;
     private List<T> dataList;
@@ -32,8 +32,16 @@ public abstract class BaseSingleRecyclerViewAdapter<T,VH extends BaseViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VH vh, int position) {
+    public void onBindViewHolder(@NonNull final VH vh, final int position) {
         showData(vh,position);
+        if(onItemClickListener != null){
+            vh.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(vh,position);
+                }
+            });
+        }
     }
 
     @Override
