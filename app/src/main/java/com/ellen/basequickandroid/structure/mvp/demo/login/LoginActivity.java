@@ -1,10 +1,12 @@
 package com.ellen.basequickandroid.structure.mvp.demo.login;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.ellen.basequickandroid.R;
 import com.ellen.basequickandroid.base.BaseActivity;
+import com.ellen.basequickandroid.base.BaseToast;
 import com.ellen.basequickandroid.dialog.AutoToast;
 import com.ellen.basequickandroid.structure.mvp.BaseMvpActivity;
 
@@ -21,6 +23,12 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     void onClick(View view){
         login("ellen","1234");
         AutoToast autoToast = new AutoToast(this);
+        autoToast.setCancelListener(new BaseToast.MyBaseToast.CancelListener() {
+            @Override
+            public void cancel() {
+                Log.e("土司结束了","haha");
+            }
+        });
         autoToast.show();
     }
 

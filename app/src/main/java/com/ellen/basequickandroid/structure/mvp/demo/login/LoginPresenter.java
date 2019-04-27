@@ -16,11 +16,7 @@ public class LoginPresenter extends LoginAgreement.LoginAgreementPresenter {
         Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-               if(mModel.login(account,password)){
-                   emitter.onNext(true);
-               }else {
-                   emitter.onNext(false);
-               }
+               emitter.onNext(mModel.login(account,password));
                emitter.onComplete();
             }
         }).subscribeOn(Schedulers.io())

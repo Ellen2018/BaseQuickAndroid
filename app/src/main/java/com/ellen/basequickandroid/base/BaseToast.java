@@ -62,7 +62,7 @@ public abstract class BaseToast {
         void unBindButterKnife();
     }
 
-    private static class MyBaseToast extends Toast{
+    public static class MyBaseToast extends Toast{
 
         private CancelListener cancelListener;
 

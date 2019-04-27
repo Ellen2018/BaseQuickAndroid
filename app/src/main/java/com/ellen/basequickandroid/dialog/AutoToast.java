@@ -29,6 +29,6 @@ public class AutoToast extends BaseToast {
     @Override
     protected void setToastGravity(Toast toast) {
         toast.setGravity(Gravity.BOTTOM,0,0);
-        
+
     }
 }
