@@ -15,13 +15,11 @@ public abstract class BasePopwindow {
 
     private PopupWindow popupWindow;
     private WeakReference<Activity> activityWeakReference;
-    private WeakReference<Context> contextWeakReference;
     //dismiss事件触发
     private OnDismissListener onDismissListener;
 
     public BasePopwindow(Activity activity, Context context){
         activityWeakReference = new WeakReference<>(activity);
-        contextWeakReference = new WeakReference<>(context);
         View view = onCreateView();
         if(this instanceof ButterKnifeInterface){
             ButterKnifeInterface butterKnifeInterface = (ButterKnifeInterface) this;
@@ -141,7 +139,7 @@ public abstract class BasePopwindow {
     }
 
     public Context getContext(){
-        return contextWeakReference.get();
+        return activityWeakReference.get();
     }
 
     public OnDismissListener getOnDismissListener() {
